@@ -1,5 +1,7 @@
 import React from 'react'
+import {Routes,Route,Link} from 'react-router-dom';
 const axios = require('axios')
+
 
 export default function Meme(){    
     const [meme,setMeme] = React.useState({
@@ -57,6 +59,9 @@ export default function Meme(){
                 <img src={meme.randomImage} alt="" className='meme-image' />
                 <h2 className='meme-text top'>{meme.topText}</h2>
                 <h2 className='meme-text bottom'>{meme.bottomText}</h2>
+                <Link to='/share'>
+                    <span className="material-icons share">ios_share</span> 
+                </Link>
             </div>            
         </main>
     )
