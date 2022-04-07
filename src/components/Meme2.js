@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {Routes,Route,Link} from 'react-router-dom';
 const axios = require('axios')
 
-
 export default function Meme2(){       
     const [image,setImage] = useState('https://www.goldderby.com/wp-content/uploads/2020/03/The-Simpsons-Homer-Simpson.jpg?w=620&h=360&crop=1')
 
