@@ -3,23 +3,20 @@ const axios = require('axios')
 
 export default function Meme2(){    
     const [meme,setMeme] = React.useState({
-        topText:'',
-        bottomText:'',
-        randomImage:'http:i.imgflip.com/1bij.jpg'
+        Text:'',        
+        Image:'https://www.goldderby.com/wp-content/uploads/2020/03/The-Simpsons-Homer-Simpson.jpg?w=620&h=360&crop=1'
     })
-    
+        
     function getMemeImage(event){    
         event.preventDefault();        
-        axios.get('https://api.unsplash.com/search/collections?page=1&query=happy&&rel="first"&&client_id=vhKvvsvg1maXci_YO7jlngE6sP_u-surI-YZxaysH-o')        
-        .then(data => {console.log(data)
-        const memesArray = data.data.data.memes;   
-        const randomNumber = Math.floor(Math.random() * memesArray.length)
-        const url =  memesArray[randomNumber].url                 
+        axios.get('https://api.unsplash.com/search/collections?page=1&query=happy&&rel="first"&&client_id=')        
+        .then(data => {console.log(data)                
+        const url =  data.results[0].tags[0].source.cover_photo.urls.small                
         return setMeme(prevMeme=>({
             ...prevMeme,
-            randomImage:url
-        }))        
-    })        
+            Image:url
+            }))        
+        })        
     }
 
     function handleChange(event){        
@@ -31,32 +28,24 @@ export default function Meme2(){
     }
     return (
         <main>
-            <div className='form'>                
+            <div className='form'> 
+                <label htmlFor="">Topic:</label>               
                 <input 
-                    name='topText' 
-                    value={meme.topText} 
+                    name='topic' 
+                    value={meme.topic} 
                     onChange={handleChange} 
                     type="text" 
                     className='form-input' 
-                    placeholder='Top Text' 
-                />
-                <input
-                    name='bottomText' 
-                    value={meme.topBottom} 
-                    onChange={handleChange}  
-                    type="text" 
-                    className='form-input'
-                    placeholder='Bottom Text' 
-                />
+                    placeholder='topic' 
+                />                
                 <button 
                     className='form-button' 
-                    onClick={getMemeImage}>Get a random meme image
+                    onClick={getQuotes}>Get a random Quotes
                 </button>
             </div>
             <div className="meme">
-                <img src={meme.randomImage} alt="" className='meme-image' />
-                <h2 className='meme-text top'>{meme.topText}</h2>
-                <h2 className='meme-text bottom'>{meme.bottomText}</h2>
+                <img src={meme.Image} alt="" className='meme-image' />
+                <h2 className='meme-text top'>{meme.Text}</h2>                
             </div>            
         </main>
     )
