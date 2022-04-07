@@ -23,6 +23,7 @@ main {
 
 .header {
   display: flex;
+  position: relative;
   align-items: center;
   height: 65px;
   max-width: 430px;
@@ -37,12 +38,21 @@ main {
 }
 
 .header-title {
+  display: inline-block;
   font-size: 1.25rem;
   margin-right: auto;
 }
 
-.share {
-  padding: 80px;
+.header button {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  color: white;
+  background-color: transparent;
+  padding: 3px 5px;
 }
 
 .form {

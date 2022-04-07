@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './components/Header'
-import Meme from './components/Meme'
-import Meme2 from './components/Meme2'
+import CustomMeme from './components/CustomMeme'
+import TwistedMeme from './components/TwistedMeme'
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
       <Header toggle={toggle} memeVersion={memeVersion} />
       <Routes>
         <Route exact path='/' element={
-          memeVersion ? <Meme /> : <Meme2 />
+          memeVersion ? <CustomMeme /> : <TwistedMeme />
         } />            
       </Routes>
     </div>

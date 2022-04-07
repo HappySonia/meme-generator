@@ -1,27 +1,25 @@
 import React from 'react'
-import {Routes,Route,Link} from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 const axios = require('axios')
 
-
-export default function Meme(){    
+export default function CustomMeme(){    
     const [meme,setMeme] = React.useState({
         topText:'',
         bottomText:'',
-        randomImage:'http:i.imgflip.com/1bij.jpg'
+        image:'http:i.imgflip.com/1bij.jpg',
+        userInput:'fun'
     })
     
-    function getMemeImage(event){    
-        event.preventDefault();        
-        axios.get('https://api.imgflip.com/get_memes')        
-        .then(data => {console.log(data)
-        const memesArray = data.data.data.memes;   
-        const randomNumber = Math.floor(Math.random() * memesArray.length)
-        const url =  memesArray[randomNumber].url                 
-        return setMeme(prevMeme=>({
-            ...prevMeme,
-            randomImage:url
-        }))        
-    })        
+    function getImage(event){    
+        event.preventDefault();       
+        axios.get(`https://api.unsplash.com/photos/random?query=${meme.userInput}&&client_id=vhKvvsvg1maXci_YO7jlngE6sP_u-surI-YZxaysH-o`)       
+        .then( data => {       
+            let url =  data.data.urls.small                
+            return setMeme(prevMeme=>({
+                ...prevMeme,
+                image:url
+            }))                      
+        })                                                               
     }
 
     function handleChange(event){        
@@ -50,15 +48,24 @@ export default function Meme(){
                     className='form-input'
                     placeholder='Bottom Text' 
                 />
+                <input
+                    name='userInput' 
+                    value={meme.userInput} 
+                    onChange={handleChange}  
+                    type="text" 
+                    className='form-input'
+                    placeholder='userInput' 
+                />
                 <button 
                     className='form-button' 
-                    onClick={getMemeImage}>Get a random meme image
+                    onClick={getImage}>Search a image
                 </button>
             </div>
             <div className="meme">
-                <img src={meme.randomImage} alt="" className='meme-image' />
+                <img src={meme.image} alt="" className='meme-image' />
                 <h2 className='meme-text top'>{meme.topText}</h2>
                 <h2 className='meme-text bottom'>{meme.bottomText}</h2>
+                <h2 className='meme-text userinput'>{meme.userInput}</h2>
                 <Link to='/share'>
                     <span className="material-icons share">ios_share</span> 
                 </Link>
