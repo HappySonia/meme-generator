@@ -8,7 +8,7 @@ This Meme Generator has two versions. Custom Version allows users to write their
 
 <a href='http://twisted-meme-generator.surge.sh/'>Link to website</a>
 
-<p><img src="./demo/custom.png" width="500px"><img src="./demo/twisted.png" width="500px"></p>
+<p><img src="./demo/custom.png" width="300px"><img src="./demo/twisted.png" width="300px"></p>
 
 ## My plan/approach
 
