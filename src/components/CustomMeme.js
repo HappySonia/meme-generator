@@ -1,30 +1,27 @@
 import React from 'react'
-import { Routes, Route, Link } from 'react-router-dom';
 const axios = require('axios')
 
 export default function CustomMeme(){    
     const [meme,setMeme] = React.useState({
         topText:'',
-        bottomText:'',
-        image:'http:i.imgflip.com/1bij.jpg',
-        userInput:'fun'
+        bottomText:'',        
+        userInput:''        
     })
+    const [image,setImage] = React.useState('https://png.pngitem.com/pimgs/s/674-6749336_just-gonna-leave-some-of-these-here-shut.png')
     
     function getImage(event){    
         event.preventDefault();       
         axios.get(`https://api.unsplash.com/photos/random?query=${meme.userInput}&&client_id=vhKvvsvg1maXci_YO7jlngE6sP_u-surI-YZxaysH-o`)       
         .then( data => {       
-            let url =  data.data.urls.small                
-            return setMeme(prevMeme=>({
-                ...prevMeme,
-                image:url
-            }))                      
-        })                                                               
+            let url = data.data.urls.small                
+            return setImage(url)        
+        })                                                        
     }
 
-    function handleChange(event){        
-        const{name,value}=event.target
-        setMeme(prevMeme=>({
+    function handleChange(event){
+        event.preventDefault();         
+        const{ name, value } = event.target
+        setMeme(prevMeme => ({
             ...prevMeme,
             [name]:value
         }))
@@ -42,7 +39,7 @@ export default function CustomMeme(){
                 />
                 <input
                     name='bottomText' 
-                    value={meme.topBottom} 
+                    value={meme.bottomText} 
                     onChange={handleChange}  
                     type="text" 
                     className='form-input'
@@ -57,18 +54,22 @@ export default function CustomMeme(){
                     placeholder='userInput' 
                 />
                 <button 
-                    className='form-button' 
-                    onClick={getImage}>Search a image
+                    className='form-button-custom' 
+                    onClick={getImage}>Search a image 🖼️
                 </button>
             </div>
             <div className="meme">
-                <img src={meme.image} alt="" className='meme-image' />
+                <img src={image} alt="" className='meme-image' />
                 <h2 className='meme-text top'>{meme.topText}</h2>
-                <h2 className='meme-text bottom'>{meme.bottomText}</h2>
-                <h2 className='meme-text userinput'>{meme.userInput}</h2>
-                <Link to='/share'>
-                    <span className="material-icons share">ios_share</span> 
-                </Link>
+                <h2 className='meme-text bottom'>{meme.bottomText}</h2>                
+                               
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+                <a class="twitter-share-button" target="_blank"
+                href={`https://twitter.com/intent/tweet?url=${image}`}>
+                Tweet</a>
+
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftwisted-meme-generator.surge.sh%2F&amp;src=sdkpreparse" class="fb-share-button">Facebook</a>
+                    
             </div>            
         </main>
     )

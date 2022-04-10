@@ -1,6 +1,4 @@
 import React from 'react'
-import Share from './Share'
-import { Routes, Route, Link } from 'react-router-dom';
 export default function Header({ toggle, memeVersion }){    
     return (
         <header className='header'>            

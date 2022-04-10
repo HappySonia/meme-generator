@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import {Routes,Route,Link} from 'react-router-dom';
 const axios = require('axios')
 
 export default function TwistedMeme(){       
-    const [image,setImage] = useState('https://www.goldderby.com/wp-content/uploads/2020/03/The-Simpsons-Homer-Simpson.jpg?w=620&h=360&crop=1')
+    const [image,setImage] = useState('https://cdn.vox-cdn.com/thumbor/cV8X8BZ-aGs8pv3D-sCMr5fQZyI=/1400x1400/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/19933026/image.png')
 
     const [quote,setQuote] = useState('')
         
@@ -23,30 +22,34 @@ export default function TwistedMeme(){
         axios.get('https://thesimpsonsquoteapi.glitch.me/quotes')        
         .then( data => {                      
             return setQuote(data.data[0].quote)        
-        }
-        )                            
+        })                            
     }
 
     return (
         <main>
-            <div className='form'> 
-                              
-                
+            <div className='form'>                                               
                 <button 
-                    className='form-button' 
-                    onClick={getMemeImage}>Get a Image
+                    className='form-button-twisted' 
+                    onClick={getMemeImage}>Get an Image 🖼️
                 </button>                
                 <button 
-                    className='form-button' 
-                    onClick={getQuote}>Get a random Quotes
+                    className='form-button-twisted' 
+                    onClick={getQuote}>Get a Meme idea
                 </button>
             </div>
             <div className="meme">
                 <img src={image} alt="" className='meme-image' />
-                <h2 className='meme-text top'>{quote}</h2>
-                <Link to='/share'>
-                    <span className="material-icons share">ios_share</span> 
-                </Link>                
+                <h2 className='quote top'>{quote}</h2>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+                <a class="twitter-share-button" target="_blank"
+                href={`https://twitter.com/intent/tweet?url=${image}`}>
+                Tweet</a>
+
+
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftwisted-meme-generator.surge.sh%2F&amp;src=sdkpreparse" class="fb-share-button">Facebook</a>
+                
+
+                
             </div>            
         </main>
     )
