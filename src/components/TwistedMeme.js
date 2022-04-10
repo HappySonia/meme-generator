@@ -44,12 +44,7 @@ export default function TwistedMeme(){
                 <a class="twitter-share-button" target="_blank"
                 href={`https://twitter.com/intent/tweet?url=${image}`}>
                 Tweet</a>
-
-
-                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftwisted-meme-generator.surge.sh%2F&amp;src=sdkpreparse" class="fb-share-button">Facebook</a>
-                
-
-                
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftwisted-meme-generator.surge.sh%2F&amp;src=sdkpreparse" class="fb-share-button">Facebook</a>                
             </div>            
         </main>
     )
