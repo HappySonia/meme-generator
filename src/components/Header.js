@@ -6,8 +6,8 @@ export default function Header({ toggle, memeVersion }){
             <h2 className="header-title">
                 Meme Generator                                      
             </h2>
-            <button className='version-btn' 
-                    onClick={toggle}>{(memeVersion) ? "Custom" : "Twisted"}
+            <button className='version-btn' onClick={toggle}>
+                {(memeVersion) ? "Custom" : "Twisted"}
             </button>            
         </header>
     )
